@@ -22,28 +22,28 @@ export class Login extends Component {
   }
 
   handleLogin() {
-    this.props.navigator.replacePreviousAndPop({
-      title: "Events List",
-      component: EventsList
-    })
-    // fetch('http://localhost:3000/api/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     username: this.state.username,
-    //     password: this.state.password
-    //   })
-    // }).then((res) => {
-    //   if (res.status === 200) {
-    //   //redirect to events page
-    //     this.setState({isLoggedin: true});      
-    //   } 
-    // }).catch((err) => {
-    //   console.log('There is an error. It\'s a sad day D=', err);
-    // });
+    fetch('http://localhost:3000/api/login', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
+    }).then((res) => {
+      if (res.status === 200) {
+      //redirect to events page
+        this.setState({isLoggedin: true});      
+        this.props.navigator.replacePreviousAndPop({
+          title: "Events List",
+          component: EventsList
+        });
+      } 
+    }).catch((err) => {
+      console.log('There is an error. It\'s a sad day D=', err);
+    });
   }
 
 //onChangeText will collect text input and set it to state object

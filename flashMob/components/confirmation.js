@@ -21,19 +21,20 @@ export class Confirmation extends Component {
     this.setState({
       modalVisible: true
     })
-    // fetch('', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     title: this.props.title,
-    //     category: this.props.category,
-    //     location: this.props.location,
-    //     date: this.props.date,
-    //     description: this.props.description
-    // })
+    fetch('http://localhost:3000/api/events', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: this.props.title,
+        category: this.props.category,
+        dist: this.props.location,
+        time: this.props.date,
+        description: this.props.description
+      })
+    });
   }
 
   _return() {
